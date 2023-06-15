@@ -18,7 +18,15 @@ class NumbersController {
         return res.json(numbers)
     }
     async delete (req, res) {
-
+        const {id} = req.body
+        
+        if (id === "" || id === undefined || id === 0) {
+            return res.json({Message:'Uh-oh',NumberStatus: false})
+        } else {
+            const numbers = await Numbers.destroy({where: {id}})
+            console.log(id);
+            return res.json({numbers, NumberStatus: true})
+        }
     }
 }
 

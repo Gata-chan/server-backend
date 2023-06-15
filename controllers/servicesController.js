@@ -19,7 +19,7 @@ class ServicesController {
         console.log(req);
         const {id} = req.body
         
-        if (id === "") {
+        if (id === "" || id === undefined || id === 0) {
             return res.json({Message:'Uh-oh',ServicesStatus: false})
         } else {
             const services = await Services.destroy({where: {id}})
